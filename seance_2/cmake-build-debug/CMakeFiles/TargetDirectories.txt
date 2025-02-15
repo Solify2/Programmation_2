@@ -1,0 +1,3 @@
+/Users/ahmedsoleiman/CLionProjects/programmation_2_portfolio/seance_2/cmake-build-debug/CMakeFiles/seance_2.dir
+/Users/ahmedsoleiman/CLionProjects/programmation_2_portfolio/seance_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ahmedsoleiman/CLionProjects/programmation_2_portfolio/seance_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
