@@ -1,12 +1,11 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 
 //
 // Created by Ahmed Soleiman on 19/02/2025.
 //
-
-
-
 
 
 // 1.Créez une liste pouvant contenir des Fighter avec les propriétés suivantes:
@@ -16,37 +15,68 @@
 // MAX_Y des constantes que vous définissez).
 // * Une vitesse (entier tel que 0<vitesse<MAX_VITESSE)
 
-
-#define NB_FIGHTERS 20
-
-
-
-char *langs[NB_FIGHTERS] = {"Fighter_1","Fighter_2","Fighter_3","Fighter_4","Fighter_5"};
-
-
-
-struct position {
+struct Position {
     int x;
     int y;
 };
 
-struct fighters {
+struct Fighter {
     char *nom;
-    int *nb_point;
+    int *points;
     int *speed;
+} typedef Fighter;
 
-};
 
 struct Node {
     struct Node *next;
-} typedef Node, Node_t*;
+    Fighter *fighter;
+} typedef Node;
 
 
+struct Queue {
+    Node *head;
+    Node *tail;
+    int size;
+} typedef Queue;
 
 
+Queue *createQueue() {
+    Queue *queue = malloc(sizeof(Queue));
 
-void main() {
+    queue->head = NULL;
+    queue->tail = NULL;
+    queue->size = 0;
+
+    // Return the pointer to the Queue struct
+    return queue;
+}
+
+bool is_empty(Queue *queue) {
+    return queue->size == 0;
+}
+
+void enqueue(Queue *queue, Fighter *fighter)
+{
+    Node *newNode = malloc(sizeof(Node));
+    newNode->fighter = fighter;
+    newNode->next = NULL;
 
 
+    if (is_empty(queue))
+    {
+        queue->head = newNode;
+        queue->tail = newNode;
+    }
 
+    else
+    {
+        queue->tail->next = newNode;
+        queue->tail = newNode;
+    }
+    queue->size++;
+}
+
+
+Fighter *createFighter(char *nom, int *points, int speed) {
+    Fighter *fighter = malloc(sizeof(Fighter));
 }
