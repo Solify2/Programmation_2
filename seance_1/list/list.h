@@ -12,7 +12,21 @@ typedef struct Node* Node_t;
 
 //PRE: /
 //POST: initialise une Queue vide et renvoie un pointeur vers celle-ci
-//List_t new_list();
+
+List_t new_list();
+Node_t create_node(int value);
+
+void insert_value_at_start(List_t list, int value);
+void insert_value_at_end(List_t list, int value);
+void insert_after(List_t list, Node_t node, int value);
+void delete_node(Node_t node, int value);
+void destory_list(List_t list);
+void display_list(List_t list);
+
+Node_t find_node(List_t list, int value);
+
+
+
 
 //PRE: q est initialisé
 //POST: renvoie le nombre d'éléments présents dans q. q n'est pas modifiée.

@@ -36,6 +36,6 @@ int dequeue(Queue_t q);
 
 //PRE: q est initialisée
 //POST: toute la mémoire allouée pour q est libérée
-void detroy_queue(Queue_t q);
+void destroy_queue(Queue_t q);
 
 #endif
