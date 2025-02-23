@@ -7,29 +7,29 @@ Description:
 #include <stdio.h>
 #include "queue.h"
 #define MAX_SIZE 100
-typedef struct Queue {
+struct Queue {
   int elements[MAX_SIZE];
   int start;
-  int end;
+  int tail;
 };
 
 Queue_t new_queue() {
-  Queue_t init_queue = (Queue_t)malloc(sizeof( struct Queue));
-  init_queue->start = -1;
-  init_queue->end = -1;
-  return init_queue;
+  Queue_t queue = (Queue_t)malloc(sizeof(struct Queue));
+  queue->start = -1;
+  queue->tail = -1;
+  return queue;
 }
 
 int size(Queue_t queue) {
   if (queue->start == -1) {
     return 0;
   }
-  return (queue->end - queue->start+1);
+  return (queue->tail - queue->start+1);
 }
 
 
 void enqueue(Queue_t q, int i) {
-  if (q->end == MAX_SIZE - 1) {
+  if (q->tail == MAX_SIZE - 1) {
     printf("Queue is full!\n");
     return;
   }
@@ -39,20 +39,20 @@ void enqueue(Queue_t q, int i) {
   }
 
 
-  q->end++;
-  q->elements[q->end] = i;
+  q->tail++;
+  q->elements[q->tail] = i;
 }
 
 int dequeue(Queue_t q) {
-  if (q->start == -1 || q->start > q->end) {
+  if (q->start == -1 || q->start > q->tail) {
      return  0;
    }
 
   int first_element = q->elements[q->start];
-  for (int i = q->start; i < q->end ; i++) {
+  for (int i = q->start; i < q->tail ; i++) {
     q->elements[i] = q->elements[i + 1];
   }
-  q->end--;
+  q->tail--;
   return first_element;
 
 
