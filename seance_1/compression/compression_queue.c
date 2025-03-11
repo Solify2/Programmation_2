@@ -70,23 +70,35 @@ int dequeue(Queue_t q) {
 
 int decompress(Queue_t q) {
 
+    Queue_t result = new_queue();
+
     Node_t current = q->head;
-    Node_t value = q->head;
-    int counter = 0;
+    Node_t next = q->head->next;
+    int nb_seq_val = 1;
 
-    int len = q->size;
-    while(len != 0) {
-        if (current->value == current->next->value) {
-            counter++;
-            current = current->next;
-            dequeue(q);
+    while(next != NULL) {
+        if (current->value == next->value) {
+            nb_seq_val++;
+            next = next->next;
         }else {
-
+            enqueue(result, current->value);
+            enqueue(result, nb_seq_val);
+            nb_seq_val = 1;
+            current =  next;
+            next = next->next;
         }
-
     }
 
+    enqueue(result, current->value);
+    enqueue(result, nb_seq_val);
 
+
+    Node_t curr = result->head;
+    while(curr!=NULL) {
+        printf("%d\n", curr->value);
+        curr = curr->next;
+    }
+    return 0;
 }
 
 
@@ -97,7 +109,7 @@ int main()
     int val=0;
     int nbv_value = 0;
     Queue_t q = new_queue();
-    printf("Enter number of elements: \n");
+    printf("Enter number of elements: ");
     scanf("%d", &nbv_value);
 
     while(nbv_value!=0) {
@@ -105,14 +117,9 @@ int main()
       enqueue(q,val);
       nbv_value--;
     }
+    printf("Decompression queue:\n");
+    decompress(q);
 
-
-    Node_t current = q->head;
-    while(current!=NULL) {
-        printf("%d\n", current->value);
-        current = current->next;
-
-    }
     //int len = q->size;
     // for(int i=0;i<len;i++) {
     //   printf("%d ",dequeue(q));
